@@ -1,8 +1,10 @@
 import { Injectable, ConflictException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
+
 import { CreateUserDto } from './dto/users.dto';
-import { User } from 'src/generated/prisma/client';
+
 import * as bcrypt from 'bcrypt';
+import { PrismaService } from '../prisma.service';
+import { User } from '../generated/prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -25,7 +27,7 @@ export class UsersService {
       data: {
         name: createUser.name,
         email: createUser.email,
-        password: hashedPassword as string,
+        password: hashedPassword,
         role: createUser.role as 'MEMBER' | 'ADMIN' | 'MODERATOR',
       },
     });
