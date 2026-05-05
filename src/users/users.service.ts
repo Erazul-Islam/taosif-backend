@@ -1,7 +1,5 @@
 import { Injectable, ConflictException } from '@nestjs/common';
-
 import { CreateUserDto } from './dto/users.dto';
-
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma.service';
 
@@ -11,9 +9,7 @@ export class UsersService {
 
   async createUser(createUser: CreateUserDto) {
     const existingUser = await this.prismaService.user.findUnique({
-      where: {
-        email: createUser.email,
-      },
+      where: { email: createUser.email },
     });
 
     if (existingUser) {
@@ -30,15 +26,13 @@ export class UsersService {
         role: createUser.role as 'MEMBER' | 'ADMIN' | 'MODERATOR',
       },
     });
+
     return user;
   }
 
   async getAllUsers() {
-    const users = await this.prismaService.user.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
+    return this.prismaService.user.findMany({
+      orderBy: { createdAt: 'desc' },
     });
-    return users;
   }
 }
