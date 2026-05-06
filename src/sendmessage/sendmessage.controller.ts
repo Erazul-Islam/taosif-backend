@@ -1,16 +1,18 @@
 /* eslint-disable */
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { SendmessageService } from './sendmessage.service';
 import { SendMessageDto } from './dto/send-message.dto';
+import { Request } from 'express';
 
 @Controller('sendmessage')
 export class SendmessageController {
   constructor(private readonly sendMessageService: SendmessageService) {}
 
   @Post()
-  async sendMessage(@Body() sendMessageDto: SendMessageDto) {
+  async sendMessage(@Body() sendMessageDto: SendMessageDto, @Req() req : Request) {
+    console.log("IP Address:", req);
     const sendMessage =
-      await this.sendMessageService.sendMessage(sendMessageDto);
+      await this.sendMessageService.sendMessage(sendMessageDto, req.ip as string);
     return {
       statusCode: 201,
       message: 'Message sent successfully',

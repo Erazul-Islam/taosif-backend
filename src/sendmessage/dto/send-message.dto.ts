@@ -9,7 +9,4 @@ export class SendMessageDto {
 
   @IsString()
   content!: string;
-
-  @IsString()
-  ip!: string;
 }

@@ -7,13 +7,14 @@ import { SendMessageDto } from './dto/send-message.dto';
 export class SendmessageService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async sendMessage(message: SendMessageDto) {
+  async sendMessage(message: SendMessageDto,ip:string) {
+    console.log(ip)
     const sendMessage = await this.prismaService.sendMessage.create({
       data: {
         name: message.name,
         email: message.email,
         content: message.content,
-        ip: '::1',
+        ip: ip,
       },
     });
     return sendMessage;
