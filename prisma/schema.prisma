@@ -23,4 +23,13 @@ enum Role {
   MEMBER
 }
 
+model SendMessage {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  email     String?
+  content   String
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
 
