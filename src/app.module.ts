@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { GeminiService } from './gemini/gemini.service';
+import { GeminiModule } from './gemini/gemini.module';
 
 @Module({
   imports: [
@@ -12,8 +14,9 @@ import { ConfigModule } from '@nestjs/config';
     }),
     UsersModule,
     PrismaModule,
+    GeminiModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, GeminiService],
 })
 export class AppModule {}
