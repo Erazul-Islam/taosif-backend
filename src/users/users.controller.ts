@@ -25,4 +25,25 @@ export class UsersController {
       data: users,
     };
   }
+
+  @Post('login')
+  async loginUser(@Body() credentials: { email: string; password: string }) {
+    const { email, password } = credentials;
+    const { user, token } = await this.usersService.loginUser(email, password);
+    return {
+      statusCode: 200,
+      message: 'Login successful',
+      data: { user, token },
+    };
+  }
+
+  @Get('me')
+  async getUserByToken(@Body('token') token: string) {
+    const user = await this.usersService.getUserByToken(token);
+    return {
+      statusCode: 200,
+      message: 'User retrieved successfully',
+      data: user,
+    };
+  }
 }

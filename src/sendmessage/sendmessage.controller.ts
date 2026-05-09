@@ -10,7 +10,7 @@ export class SendmessageController {
 
   @Post()
   async sendMessage(@Body() sendMessageDto: SendMessageDto, @Req() req : Request) {
-    console.log("IP Address:", req);
+
     const sendMessage =
       await this.sendMessageService.sendMessage(sendMessageDto, req.ip as string);
     return {
