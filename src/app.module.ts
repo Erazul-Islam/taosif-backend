@@ -6,7 +6,7 @@ import { PrismaModule } from './prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { GeminiService } from './gemini/gemini.service';
 import { GeminiModule } from './gemini/gemini.module';
-import { SendmessageModule } from './sendmessage/sendmessage.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { SendmessageModule } from './sendmessage/sendmessage.module';
     UsersModule,
     PrismaModule,
     GeminiModule,
-    SendmessageModule,
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService, GeminiService],

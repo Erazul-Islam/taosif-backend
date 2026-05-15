@@ -1,10 +1,10 @@
 /* eslint-disable */
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
-import { SendmessageService } from './sendmessage.service';
-import { SendMessageDto } from './dto/send-message.dto';
+import { SendmessageService } from './message.service';
+import { SendMessageDto } from './dto/message.dto';
 import { Request } from 'express';
 
-@Controller('sendmessage')
+@Controller('message')
 export class SendmessageController {
   constructor(private readonly sendMessageService: SendmessageService) {}
 

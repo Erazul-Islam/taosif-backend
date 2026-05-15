@@ -1,14 +1,13 @@
 /* eslint-disable */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { SendMessageDto } from './dto/send-message.dto';
+import { SendMessageDto } from './dto/message.dto';
 
 @Injectable()
 export class SendmessageService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async sendMessage(message: SendMessageDto,ip:string) {
-    console.log(ip)
     const sendMessage = await this.prismaService.sendMessage.create({
       data: {
         name: message.name,
