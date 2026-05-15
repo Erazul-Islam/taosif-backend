@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/users.dto';
+import { Response } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -27,9 +28,18 @@ export class UsersController {
   }
 
   @Post('login')
-  async loginUser(@Body() credentials: { email: string; password: string }) {
+  async loginUser(
+    @Body() credentials: { email: string; password: string },
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const { email, password } = credentials;
     const { user, token } = await this.usersService.loginUser(email, password);
+    res.cookie('token', token, {
+      httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
     return {
       statusCode: 200,
       message: 'Login successful',
