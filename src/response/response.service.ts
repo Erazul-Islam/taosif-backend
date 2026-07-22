@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { SubmitResponseDto } from './dto/submit-response.dto';
-import { SurveyStatus } from 'src/generated/prisma/browser';
 
 @Injectable()
 export class ResponseService {
@@ -40,9 +39,9 @@ export class ResponseService {
     /**
      * Check Status
      */
-    if (survey.status !== SurveyStatus.PUBLISHED) {
-      throw new BadRequestException('Survey is not accepting responses.');
-    }
+    // if (survey.status !== SurveyStatus.PUBLISHED) {
+    //   throw new BadRequestException('Survey is not accepting responses.');
+    // }
 
     /**
      * Check Start Date
@@ -285,9 +284,9 @@ export class ResponseService {
       throw new NotFoundException('Survey not found.');
     }
 
-    if (survey.status !== SurveyStatus.PUBLISHED) {
-      throw new BadRequestException('Survey is not available.');
-    }
+    // if (survey.status !== SurveyStatus.PUBLISHED) {
+    //   throw new BadRequestException('Survey is not available.');
+    // }
 
     return survey;
   }

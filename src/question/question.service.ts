@@ -5,16 +5,15 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { CreateQuestionDto } from './dto/question.dto';
-import { QuestionType } from 'src/generated/prisma/browser';
 
 @Injectable()
 export class QuestionService {
   constructor(private prisma: PrismaService) {}
 
-  private readonly OPTION_BASED_TYPES: QuestionType[] = [
-    QuestionType.RADIO,
-    QuestionType.CHECKBOX,
-    QuestionType.SELECT,
+  private readonly OPTION_BASED_TYPES: string[] = [
+    'RADIO',
+    'CHECKBOX',
+    'SELECT',
   ];
 
   async create(surveyId: string, dto: CreateQuestionDto) {
