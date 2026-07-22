@@ -6,7 +6,12 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-import { SurveyStatus } from 'src/generated/prisma/browser';
+
+export enum SurveyStatus {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  CLOSED = 'CLOSED',
+}
 
 export class CreateSurveyDto {
   @IsString()

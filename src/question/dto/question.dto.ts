@@ -12,7 +12,12 @@ import {
   IsArray,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { QuestionType } from 'src/generated/prisma/browser';
+
+export enum QuestionType {
+  RADIO = 'RADIO',
+  CHECKBOX = 'CHECKBOX',
+  SELECT = 'SELECT',
+}
 
 class CreateOptionDto {
   @IsString()
