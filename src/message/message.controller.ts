@@ -20,16 +20,16 @@ export class SendmessageController {
     };
   }
 
-  @Post('notify')
-  async sendNotification(@Body('token') token: string) {
-    const response = await this.sendMessageService.sendnotification(token);
-    console.log(response)
-    return {
-      statusCode: 200,
-      message: 'Notification sent successfully',
-      data: response,
-    };
-  }
+  // @Post('notify')
+  // async sendNotification(@Body('token') token: string) {
+  //   const response = await this.sendMessageService.sendnotification(token);
+  //   console.log(response)
+  //   return {
+  //     statusCode: 200,
+  //     message: 'Notification sent successfully',
+  //     data: response,
+  //   };
+  // }
 
   @Get()
   async getAllMessages() {
