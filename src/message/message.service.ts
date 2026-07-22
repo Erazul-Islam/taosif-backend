@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { SendMessageDto } from './dto/message.dto';
-import admin from 'src/config/admin.firebase';
+// import admin from 'src/config/admin.firebase';
 
 @Injectable()
 export class SendmessageService {
@@ -20,26 +20,26 @@ export class SendmessageService {
     return sendMessage;
   }
 
-  async sendnotification(token: string) {
-    try {
-      const response = await admin.messaging().send({
-        token: token,
-        notification: {
-          title: 'New Message',
-          body: 'You have a new message from your website contact form.',
-        },
-        data: {
-          type: 'Portfolio Message',
-        }
-      })
-      console.log(response)
-      return response;
-    }
-    catch (error) {
-      console.error(error);
-      throw error;
-    }
-  }
+  // async sendnotification(token: string) {
+  //   try {
+  //     const response = await admin.messaging().send({
+  //       token: token,
+  //       notification: {
+  //         title: 'New Message',
+  //         body: 'You have a new message from your website contact form.',
+  //       },
+  //       data: {
+  //         type: 'Portfolio Message',
+  //       }
+  //     })
+  //     console.log(response)
+  //     return response;
+  //   }
+  //   catch (error) {
+  //     console.error(error);
+  //     throw error;
+  //   }
+  // }
 
   async getAllMessages() {
     const messages = await this.prismaService.sendMessage.findMany({
